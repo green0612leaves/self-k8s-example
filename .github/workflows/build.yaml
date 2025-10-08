@@ -29,6 +29,6 @@ jobs:
       - name: Build hello-flask and push
         uses: docker/build-push-action@v3
         with:
-          context: hello-world-flask-yaml
+          context: hello-flask
           push: true
           tags: ${{ env.DOCKERHUB_USERNAME }}/hello-flask:${{ steps.vars.outputs.sha_short }}
