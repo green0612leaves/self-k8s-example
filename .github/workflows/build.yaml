@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - "main"
+      - 'main'
 
 env:
   DOCKERHUB_USERNAME: zhangrui20200722
@@ -31,24 +31,10 @@ jobs:
         with:
           context: backend
           push: true
-          platforms: linux/amd64,linux/arm64
           tags: ${{ env.DOCKERHUB_USERNAME }}/backend:${{ steps.vars.outputs.sha_short }}
       - name: Build frontend and push
         uses: docker/build-push-action@v3
         with:
           context: frontend
           push: true
-          platforms: linux/amd64,linux/arm64
           tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.sha_short }}
-      # - name: Update helm values.yaml
-      #   uses: fjogeleit/yaml-update-action@main
-      #   with:
-      #     valueFile: 'helm/values.yaml'
-      #     commitChange: true
-      #     branch: main
-      #     message: 'Update Image Version to ${{ steps.vars.outputs.sha_short }}'
-      #     changes: |
-      #       {
-      #         "backend.tag": "${{ steps.vars.outputs.sha_short }}",
-      #         "frontend.tag": "${{ steps.vars.outputs.sha_short }}"
-      #       }
