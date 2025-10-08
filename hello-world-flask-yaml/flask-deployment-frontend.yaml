@@ -1,0 +1,37 @@
+---
+# 第二部分：定义 Deployment，管理 Pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: hello-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-flask
+  template:
+    metadata:
+      labels:
+        app: frontend-flask
+    spec:
+      containers:
+        - name: flask-frontend
+          image: zhangrui20200722/hello-world-flask:frontend
+          ports:
+            - containerPort: 5000
+---
+# 第三部分：定义 Service，暴露 Deployment 的 Pod
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: hello-flask
+spec:
+  selector:
+    app: frontend-flask
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP  # 可根据需要改为 NodePort 或 LoadBalancer
