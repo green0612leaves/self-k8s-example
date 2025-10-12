@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: frontend
   labels:
-    app: frontend
+    app: frontend-flask
 spec:
   # do not include replicas in the manifests if you want replicas to be controlled by HPA
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-flask
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-flask
     spec:
       containers:
       - name: react-frontend
@@ -36,7 +36,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: frontend
+    app: frontend-flask
   ports:
   - port: 3000
     targetPort: 3000

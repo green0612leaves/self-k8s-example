@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: backend
   labels:
-    app: backend
+    app: backend-flask
 spec:
   # Answer of lesson 22
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: backend-flask
   template:
     metadata:
       labels:
@@ -70,11 +70,11 @@ kind: Service
 metadata:
   name: backend-svc
   labels:
-    app: backend
+    app: backend-flask
 spec:
   type: ClusterIP
   selector:
-    app: backend
+    app: backend-flask
   ports:
   - port: 5000
     targetPort: 5000
