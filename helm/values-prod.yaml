@@ -1,11 +1,11 @@
 frontend:
-  image: lyzhang1999/frontend
+  image: zhangrui20200722/hello-flask
   tag: latest
   autoscaling:
     averageUtilization: 50
 
 backend:
-  image: lyzhang1999/backend
+  image: zhangrui20200722/hello-flask
   tag: latest
   autoscaling:
     averageUtilization: 50
