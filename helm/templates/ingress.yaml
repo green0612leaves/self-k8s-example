@@ -12,14 +12,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: frontend-service
+                name: frontend-svc
                 port:
                   number: 3000
           - path: /api/?(.*)
             pathType: Prefix
             backend:
               service:
-                name: backend-service
+                name: backend-svc
                 port:
                   number: 5000
   ingressClassName: nginx
