@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontend-ingress
+  name: frontend-ingress-3
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
     - http:
         paths:
-          - path: /?(.*)
+          - path: /3/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: frontend-svc
                 port:
                   number: 3000
-          - path: /api/?(.*)
+          - path: /3/api/?(.*)
             pathType: Prefix
             backend:
               service:
